@@ -9,5 +9,6 @@ namespace Projet_AskMeIfYouCan
     internal class toto
     {
         int toti;
+        int tutu;
     }
 }
