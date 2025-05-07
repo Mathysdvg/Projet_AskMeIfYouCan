@@ -3,26 +3,14 @@
     public class Question
     {
         #region Propriété(s)
-
-        #endregion
         private int numero;
         private String libelle;
         private String themeNumero;
         private String niveauDifficulteId;
         private List<Proposition> lesPropositions;
-
-        public List<Proposition> MyProperty
-        {
-            get { return lesPropositions; }
-            set { lesPropositions = value; }
-        }
-
-
-
+        #endregion
 
         #region Assesseur(s)
-
-        #endregion
         public int Numero
         {
             get { return numero; }
@@ -46,6 +34,14 @@
             get { return niveauDifficulteId; }
             set { niveauDifficulteId = value; }
         }
+
+        public List<Proposition> LesPropositions
+        {
+            get { return lesPropositions; }
+            set { lesPropositions = value; }
+        }
+        #endregion
+
         #region Constructeur(s)
 
         #endregion
