@@ -11,34 +11,49 @@
         #endregion
 
         #region Assesseur(s)
+        /// <summary>
+        /// Obtient le numéro de la question
+        /// </summary>
         public int Numero
         {
             get { return numero; }
-            set { numero = value; }
+            private set { numero = value; }
         }
 
+        /// <summary>
+        /// Obtient le libelle de la question
+        /// </summary>
         public String Libelle
         {
             get { return libelle; }
-            set { libelle = value; }
+            private set { libelle = value; }
         }
 
+        /// <summary>
+        /// Obtient le thème de la question
+        /// </summary>
         public String Theme_Numero
         {
             get { return themeNumero; }
-            set { themeNumero = value; }
+            private set { themeNumero = value; }
         }
 
+        /// <summary>
+        /// Obtient le niveau de difficulté de la question
+        /// </summary>
         public String Niveau_Difficulte_Id
         {
             get { return niveauDifficulteId; }
-            set { niveauDifficulteId = value; }
+            private set { niveauDifficulteId = value; }
         }
 
+        /// <summary>
+        /// Obtient la liste des propositions de la question
+        /// </summary>
         public List<Proposition> LesPropositions
         {
             get { return lesPropositions; }
-            set { lesPropositions = value; }
+            private set { lesPropositions = value; }
         }
         #endregion
 

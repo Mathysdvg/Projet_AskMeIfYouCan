@@ -14,35 +14,43 @@ namespace Projet_AskMeIfYouCan
         private int score;
         private string theme;
         private string niveauDifficulte;
-
-
-
-
         #endregion
 
         #region Accesseur(s)
+        /// <summary>
+        /// Obtient la liste des questions
+        /// </summary>
         public List<Question> ListeQuestion
         {
             get { return listeQuestion; }
-            set { listeQuestion = value; }
+            private set { listeQuestion = value; }
         }
 
+        /// <summary>
+        /// Obtient le Score
+        /// </summary>
         public int Score
         {
             get { return score; }
-            set { score = value; }
+            private set { score = value; }
         }
 
+        /// <summary>
+        /// Obtient le thème du quizz
+        /// </summary>
         public string Theme
         {
             get { return theme; }
-            set { theme = value; }
+            private set { theme = value; }
         }
 
+        /// <summary>
+        /// Obtient le niveau de difficulté du quizz
+        /// </summary>
         public string NiveauDifficulte
         {
             get { return niveauDifficulte; }
-            set { niveauDifficulte = value; }
+            private set { niveauDifficulte = value; }
         }
 
         #endregion
