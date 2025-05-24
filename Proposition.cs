@@ -34,6 +34,19 @@ namespace Projet_AskMeIfYouCan
         #endregion
 
         #region Constructeur(s)
+        /// <summary>
+        /// Initialise une objet de la classe Proposition avec son numéo et son libelle
+        /// </summary>
+        /// <param name="_numero">Le numéro de la proposition</param>
+        /// <param name="_libelle">Le libelle de la proposition</param>
+        public Proposition(int _numero, String _libelle)
+        {
+            this.Numero = _numero;
+            this.Libelle = _libelle;
+        }
+        #endregion
+
+        #region Méthode(s)
 
         #endregion
     }

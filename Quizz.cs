@@ -56,7 +56,20 @@ namespace Projet_AskMeIfYouCan
         #endregion
 
         #region Constructeur(s)
-
+        /// <summary>
+        /// Initialise un objet de la classe quizz avec une liste de question un score un thème et un niveau de difficulté
+        /// </summary>
+        /// <param name="_listeQuestion">La liste des questions du quizz</param>
+        /// <param name="_score">Le score du joueur</param>
+        /// <param name="_theme">Le thème du quizz</param>
+        /// <param name="_niveauDifficulte">Le niveau de difficulté du quizz</param>
+        public Quizz(List<Question> _listeQuestion, int _score, string _theme, string _niveauDifficulte)
+        {
+            this.listeQuestion = _listeQuestion;
+            this.score = _score;
+            this.theme = _theme;
+            this.niveauDifficulte= _niveauDifficulte;
+        }
         #endregion
 
         #region Méthode(s)

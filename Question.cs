@@ -58,7 +58,22 @@
         #endregion
 
         #region Constructeur(s)
-
+        /// <summary>
+        /// Initialise un objet de la classe Question avec un numéro un libelle un thème une difficulté et les propositions
+        /// </summary>
+        /// <param name="_numero">Le numéro de la question</param>
+        /// <param name="_libelle">Le libelle de la question</param>
+        /// <param name="_themeNumero">Le thème de la question</param>
+        /// <param name="_niveauDifficulteId">Le niveau de difficulté de la question</param>
+        /// <param name="_lesPropositions">Les propostions de la question</param>
+        public Question(int _numero, String _libelle, String _themeNumero, String _niveauDifficulteId, List<Proposition> _lesPropositions)
+        {
+            this.Numero = _numero;
+            this.Libelle = _libelle;
+            this.Theme_Numero = _themeNumero;
+            this.Niveau_Difficulte_Id = _niveauDifficulteId;
+            this.LesPropositions = _lesPropositions;
+        }
         #endregion
 
         #region Méthode(s)
