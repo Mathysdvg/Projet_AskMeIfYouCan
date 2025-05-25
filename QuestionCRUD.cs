@@ -19,6 +19,24 @@ namespace Projet_AskMeIfYouCan
         {
             connection = new SQLiteConnection("Data Source=" + nomBdd + ".sqlite;Version=3;");
             connection.Open();
+            CreerTable();
+        }
+
+        /// <summary>
+        /// Fonction créant la table question si elle n'existe pas 
+        /// </summary>
+        public void CreerTable()
+        {
+            //création d'une table question, elle dispose d'un numero clé primaire,
+            //un libelle, un niveau de difficulté et un thème de type text
+            string createTableQuery = "CREATE TABLE IF NOT EXISTS question " +
+                "(Numero INTEGER PRIMARY KEY NOT NULL," +
+                "Libelle TEXT NOT NULL," +
+                "NiveauDifficulte_id TEXT NOT NULL," +
+                "Theme_numero TEXT NOT NULL);";
+            SQLiteCommand command = new SQLiteCommand(createTableQuery, connection);
+
+            command.ExecuteNonQuery();
         }
     }
 }
