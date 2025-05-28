@@ -38,5 +38,33 @@ namespace Projet_AskMeIfYouCan
 
             command.ExecuteNonQuery();
         }
+
+        /// <summary>
+        /// Retourne la liste des questions trouvés selon le theme et la difficulté transmis en paramètre
+        /// </summary>
+        /// <param name="theme">theme dont on veut avoir les questions</param>
+        /// <param name="difficulte">difficulte dont on veut avoir les questions</param>
+        /// <returns>une liste de question</returns>
+        public List<Question> ListeQuestion(string theme, string difficulte)
+        {
+            List<Question> listQuestion = new List<Question>();
+            // Obtenir les personnages dont le nom contient le filtre
+            string query = "SELECT * FROM question WHERE Theme_numero = @theme AND NiveauDifficulte_id = @difficulte";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@theme", theme);
+            command.Parameters.AddWithValue("@difficulte", difficulte);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Question uneQuestion = new Question(
+                    int.Parse(reader["numero"].ToString()),
+                    reader["libelle"].ToString(),
+                    reader["NiveauDifficulte_id"].ToString(),
+                    reader["Theme_numero"].ToString()
+                    );
+                listQuestion.Add(uneQuestion);
+            }
+            return listQuestion;
+        }
     }
 }
