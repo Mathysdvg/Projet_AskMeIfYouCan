@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Projet_AskMeIfYouCan
         private int score;
         private string theme;
         private string niveauDifficulte;
+        private int indexQuestionActuelle;
         #endregion
 
         #region Accesseur(s)
@@ -53,6 +55,14 @@ namespace Projet_AskMeIfYouCan
             private set { niveauDifficulte = value; }
         }
 
+        /// <summary>
+        /// Obtient l'index de la question actuelle
+        /// </summary>
+        public int IndexQuestionActuelle
+        {
+            get { return indexQuestionActuelle; }
+            private set { indexQuestionActuelle = value; }
+        }
         #endregion
 
         #region Constructeur(s)
@@ -73,7 +83,30 @@ namespace Projet_AskMeIfYouCan
         #endregion
 
         #region Méthode(s)
+        /// <summary>
+        /// Augmente le score du joueur
+        /// </summary>
+        public void AugmenteScore()
+        {
+            score++;
+        }
 
+        /// <summary>
+        /// Passe à la question suivante dans le quiz
+        /// </summary>
+        /// <returns>La question suivante ou null s'il n'y en a plus</returns>
+        public Question QuestionSuivante()
+        {
+            if (indexQuestionActuelle < listeQuestion.Count)
+            {
+                indexQuestionActuelle++;
+                return listeQuestion[indexQuestionActuelle];
+            }
+            else
+            {
+                return null; // Fin du quiz
+            }
+        }
         #endregion
     }
 }
