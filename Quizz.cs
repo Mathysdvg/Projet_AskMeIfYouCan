@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static Projet_AskMeIfYouCan.QuestionCRUD;
 
 namespace Projet_AskMeIfYouCan
 {
     public class Quizz
     {
         #region Propriété(s)
-
+        private QuestionCRUD questionBdd;
         private List<Question> listeQuestion;
         private int score;
         private string theme;
         private string niveauDifficulte;
+        private List<Question> questionsPosees;
         #endregion
 
         #region Accesseur(s)
@@ -53,6 +57,15 @@ namespace Projet_AskMeIfYouCan
             private set { niveauDifficulte = value; }
         }
 
+        /// <summary>
+        /// Obtient la liste des questions posées
+        /// </summary>
+        public List<Question> QuestionsPosees
+        {
+            get { return questionsPosees; }
+            private set { questionsPosees = value; }
+        }
+
         #endregion
 
         #region Constructeur(s)
@@ -63,17 +76,57 @@ namespace Projet_AskMeIfYouCan
         /// <param name="_score">Le score du joueur</param>
         /// <param name="_theme">Le thème du quizz</param>
         /// <param name="_niveauDifficulte">Le niveau de difficulté du quizz</param>
-        public Quizz(List<Question> _listeQuestion, int _score, string _theme, string _niveauDifficulte)
+        public Quizz(int _score, string _theme, string _niveauDifficulte)
         {
-            this.listeQuestion = _listeQuestion;
+            questionBdd = new QuestionCRUD("2025_Quiz_Cyber.sqlite");
+            this.listeQuestion = questionBdd.ListeQuestion(_theme,_niveauDifficulte) ;
             this.score = _score;
             this.theme = _theme;
             this.niveauDifficulte= _niveauDifficulte;
+            this.QuestionsPosees = new List<Question>();
         }
         #endregion
 
         #region Méthode(s)
+        /// <summary>
+        /// Augmente le score du joueur
+        /// </summary>
+        public void AugmenteScore()
+        {
+            score++;
+        }
 
+        /// <summary>
+        /// Passe à la question suivante dans le quizz
+        /// </summary>
+        /// <returns>La question suivante ou null s'il n'y en a plus</returns>
+        public Question QuestionSuivante()
+        {
+            // On filtre les questions non encore posées
+            List<Question> questionsRestantes = listeQuestion.Except(questionsPosees).ToList();
+
+            if (questionsRestantes.Count == 0)
+            {
+                return null; // Toutes les questions ont été posées
+            }
+
+            // Choisir une question au hasard parmi celles restantes
+            Random nbAlea = new Random();
+            Question uneQuestion = questionsRestantes[nbAlea.Next(questionsRestantes.Count)];
+
+            // Ajouter la question aux posées
+            questionsPosees.Add(uneQuestion);
+
+            return uneQuestion;
+        }
+
+        public void estFini()
+        {
+            if (QuestionsPosees.Count == 20)
+            {
+
+            }
+        }
         #endregion
     }
 }

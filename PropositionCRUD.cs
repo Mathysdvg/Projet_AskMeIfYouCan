@@ -38,16 +38,16 @@ namespace Projet_AskMeIfYouCan
         }
 
         /// <summary>
-        /// Retourne la liste des propositions trouvés selon l'id de la question transmis en paramètre
+        /// Retourne la liste des propositions et la véracitée (si bonne ou pas) trouvés selon l'id de la question transmis en paramètre
         /// </summary>
         /// <param name="idQuestion">id de la question dont on veut avoir les propositions</param>
-        /// <returns>une liste de proposition</returns>
+        /// <returns>une liste de proposition avec la véracitée (si bonne ou pas)</returns>
         public List<Proposition> ListProposition(string idQuestion)
         {
             List<Proposition> ListProposition = new List<Proposition>();
             // Obtenir les propositions liée a une question 
-            string query = "SELECT * FROM proposition" +
-                "INNER JOIN reponse ON reponse.Proposition = proposition.numero" +
+            string query = "SELECT propositions.*, reponse.BonneRep FROM propositions"+
+                "INNER JOIN reponse ON reponse.Proposition_numero = propositions.Numero" +
                 "WHERE reponse.Question_numero = @idQuestion";
             SQLiteCommand command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@idQuestion", idQuestion);
@@ -56,7 +56,8 @@ namespace Projet_AskMeIfYouCan
             {
                 Proposition uneProposition = new Proposition(
                     int.Parse(reader["Numero"].ToString()),
-                    reader["Libelle"].ToString()
+                    reader["Libelle"].ToString(),
+                    int.Parse(reader["BonneRep"].ToString())
                     );
                 ListProposition.Add(uneProposition);
             }
