@@ -11,6 +11,7 @@ namespace Projet_AskMeIfYouCan
         #region Propriété(s)
         private int numero;
         private String libelle;
+        private int bonneRep;
         #endregion
 
         #region Assesseur(s)
@@ -31,6 +32,15 @@ namespace Projet_AskMeIfYouCan
             get { return libelle; }
             private set { libelle = value; }
         }
+
+        /// <summary>
+        /// Obtient la bonne réponse
+        /// </summary>
+        public int BonneRep
+        {
+            get { return bonneRep; }
+            private set { bonneRep = value; }
+        }
         #endregion
 
         #region Constructeur(s)
@@ -39,10 +49,11 @@ namespace Projet_AskMeIfYouCan
         /// </summary>
         /// <param name="_numero">Le numéro de la proposition</param>
         /// <param name="_libelle">Le libelle de la proposition</param>
-        public Proposition(int _numero, String _libelle)
+        public Proposition(int _numero, String _libelle, int _bonneRep)
         {
             this.Numero = _numero;
             this.Libelle = _libelle;
+            this.BonneRep = _bonneRep;
         }
         #endregion
 

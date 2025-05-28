@@ -72,11 +72,17 @@
             this.Libelle = _libelle;
             this.Theme_Numero = _themeNumero;
             this.Niveau_Difficulte_Id = _niveauDifficulteId;
+            this.LesPropositions = RemplirProposition();
         }
         #endregion
 
         #region Méthode(s)
-
+        public List<Proposition> RemplirProposition()
+        {
+            lesPropositions = new List<Proposition>();
+            
+            return lesPropositions;
+        }
         #endregion
     }
 }
