@@ -36,5 +36,31 @@ namespace Projet_AskMeIfYouCan
 
             command.ExecuteNonQuery();
         }
+
+        /// <summary>
+        /// Retourne la liste des propositions trouvés selon l'id de la question transmis en paramètre
+        /// </summary>
+        /// <param name="idQuestion">id de la question dont on veut avoir les propositions</param>
+        /// <returns>une liste de proposition</returns>
+        public List<Proposition> ListProposition(string idQuestion)
+        {
+            List<Proposition> ListProposition = new List<Proposition>();
+            // Obtenir les propositions liée a une question 
+            string query = "SELECT * FROM proposition" +
+                "INNER JOIN reponse ON reponse.Proposition = proposition.numero" +
+                "WHERE reponse.Question_numero = @idQuestion";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@idQuestion", idQuestion);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Proposition uneProposition = new Proposition(
+                    int.Parse(reader["Numero"].ToString()),
+                    reader["Libelle"].ToString()
+                    );
+                ListProposition.Add(uneProposition);
+            }
+            return ListProposition;
+        }
     }
 }
