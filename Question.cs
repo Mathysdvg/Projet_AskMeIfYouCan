@@ -77,9 +77,11 @@
         #endregion
 
         #region Méthode(s)
-        public void RemplirProposition()
+        public List<Proposition> RemplirProposition()
         {
-
+            lesPropositions = new List<Proposition>();
+            
+            return lesPropositions;
         }
         #endregion
     }
