@@ -8,6 +8,7 @@
         private String themeNumero;
         private String niveauDifficulteId;
         private List<Proposition> lesPropositions;
+        private PropositionsCRUD propositionBdd;
         #endregion
 
         #region Assesseur(s)
@@ -55,6 +56,15 @@
             get { return lesPropositions; }
             private set { lesPropositions = value; }
         }
+
+        /// <summary>
+        /// Obtient la liste des propositions de la question
+        /// </summary>
+        public PropositionsCRUD PropositionBdd
+        {
+            get { return propositionBdd; }
+            private set { propositionBdd = value; }
+        }
         #endregion
 
         #region Constructeur(s)
@@ -72,7 +82,7 @@
             this.Libelle = _libelle;
             this.Theme_Numero = _themeNumero;
             this.Niveau_Difficulte_Id = _niveauDifficulteId;
-            this.LesPropositions = RemplirProposition();
+            this.LesPropositions = PropositionBdd.ListProposition(_numero);
         }
         #endregion
 

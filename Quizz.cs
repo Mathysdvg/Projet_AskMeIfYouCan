@@ -120,12 +120,13 @@ namespace Projet_AskMeIfYouCan
             return uneQuestion;
         }
 
-        public void estFini()
+        /// <summary>
+        /// Renvoie un booléen si l'utilisateur a fait plus de 20 questions
+        /// </summary>
+        /// <returns>True si c'est fini sinon false</returns>
+        public bool estFini()
         {
-            if (QuestionsPosees.Count == 20)
-            {
-
-            }
+            return QuestionsPosees.Count >= 20;
         }
         #endregion
     }
