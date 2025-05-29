@@ -48,7 +48,7 @@ namespace Projet_AskMeIfYouCan
         public List<Question> ListeQuestion(string theme, string difficulte)
         {
             List<Question> listQuestion = new List<Question>();
-            // Obtenir les personnages dont le nom contient le filtre
+            // Obtenir les Questions dont le theme et la difficulte contiennent les filtres
             string query = "SELECT * FROM question WHERE Theme_numero = @theme AND NiveauDifficulte_id = @difficulte";
             SQLiteCommand command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@theme", theme);
